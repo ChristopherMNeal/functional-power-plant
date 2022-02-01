@@ -27,6 +27,13 @@ export const changeState = (prop) => {
   };
 };
 
+export const resetState = (prop) => {
+  return (state) => ({
+    ...state,
+    [prop]: 0,
+  });
+};
+
 // We create four functions using our function factory. We could easily create many more.
 
 export const feed = changeState("soil")(1);
@@ -34,3 +41,24 @@ export const blueFood = changeState("soil")(5);
 
 export const hydrate = changeState("water")(1);
 export const superWater = changeState("water")(5);
+
+export const fullSun = changeState("light")(5);
+export const partialSun = changeState("light")(1);
+
+export const resetSoil = resetState("soil");
+export const resetWater = resetState("water");
+export const resetLight = resetState("light");
+
+export const dailyMaintenance = (func) => {
+  func(feed);
+  func(hydrate);
+  func(partialSun);
+  return func();
+};
+
+export const replant = (func) => {
+  func(resetSoil);
+  func(resetWater);
+  func(resetLight);
+  return func();
+};
