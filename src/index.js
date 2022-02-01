@@ -15,9 +15,21 @@ import {
   plantControl2,
   dailyMaintenance,
   replant,
+  dayPasses,
 } from "./js/plant.js";
 
 $(document).ready(function () {
+  $("#day-passes").click(function () {
+    const newState = dayPasses(plantControl);
+    const newState2 = dayPasses(plantControl2);
+    $("#soil-value").text(`Soil: ${newState.soil}`);
+    $("#water-value").text(`Water: ${newState.water}`);
+    $("#light-value").text(`Light: ${newState.light}`);
+    $("#soil-value2").text(`Soil: ${newState2.soil}`);
+    $("#water-value2").text(`Water: ${newState2.water}`);
+    $("#light-value2").text(`Light: ${newState2.light}`);
+  });
+
   // This function has side effects because we are using jQuery. Manipulating the DOM will always be a side effect. Note that we only use one of our functions to alter soil. You can easily add more.
 
   $("#blue-food").click(function () {

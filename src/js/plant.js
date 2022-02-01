@@ -38,12 +38,15 @@ export const resetState = (prop) => {
 
 export const feed = changeState("soil")(1);
 export const blueFood = changeState("soil")(5);
+export const hungry = changeState("soil")(-3);
 
 export const hydrate = changeState("water")(1);
 export const superWater = changeState("water")(5);
+export const thirsty = changeState("water")(-3);
 
 export const fullSun = changeState("light")(5);
 export const partialSun = changeState("light")(1);
+export const nightTime = changeState("light")(-3);
 
 export const resetSoil = resetState("soil");
 export const resetWater = resetState("water");
@@ -53,6 +56,13 @@ export const dailyMaintenance = (func) => {
   func(feed);
   func(hydrate);
   func(partialSun);
+  return func();
+};
+
+export const dayPasses = (func) => {
+  func(hungry);
+  func(thirsty);
+  func(nightTime);
   return func();
 };
 
